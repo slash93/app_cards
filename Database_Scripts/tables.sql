@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema app_cards
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema app_cards
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `app_cards` DEFAULT CHARACTER SET utf8 ;
+USE `app_cards` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`cards`
+-- Table `app_cards`.`cards`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`cards` (
+CREATE TABLE IF NOT EXISTS `app_cards`.`cards` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(64) NOT NULL,
   `subtitle` VARCHAR(64) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`cards` (
   `set_id` INT NOT NULL,
   `collector_number` INT NOT NULL,
   `rarity` CHAR(1) NOT NULL,
-  `global_id` INT NULL,
+  `text_global_id` INT NULL,
   `image_id` INT NULL,
   `affiliation_id` INT NOT NULL,
   `alliangment` CHAR(1) NULL,
@@ -41,9 +41,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`globals`
+-- Table `app_cards`.`globals`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`globals` (
+CREATE TABLE IF NOT EXISTS `app_cards`.`text_globals` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `text` VARCHAR(256) NOT NULL,
   PRIMARY KEY (`id`))
@@ -51,9 +51,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`sets`
+-- Table `app_cards`.`sets`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`sets` (
+CREATE TABLE IF NOT EXISTS `app_cards`.`sets` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(64) NOT NULL,
   `date` DATE NULL,
@@ -66,9 +66,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`images`
+-- Table `app_cards`.`images`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`images` (
+CREATE TABLE IF NOT EXISTS `app_cards`.`images` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `image` VARBINARY(255) NOT NULL,
   PRIMARY KEY (`id`))
@@ -76,9 +76,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`users`
+-- Table `app_cards`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`users` (
+CREATE TABLE IF NOT EXISTS `app_cards`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
@@ -88,9 +88,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`comments`
+-- Table `app_cards`.`comments`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`comments` (
+CREATE TABLE IF NOT EXISTS `app_cards`.`comments` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `comment` VARCHAR(512) NOT NULL,
@@ -100,9 +100,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`dice`
+-- Table `app_cards`.`dice`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`dice` (
+CREATE TABLE IF NOT EXISTS `app_cards`.`dice` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `incolor` VARCHAR(45) NOT NULL,
   `outcolor` VARCHAR(45) NOT NULL,
@@ -126,9 +126,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`inventories`
+-- Table `app_cards`.`inventories`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`inventories` (
+CREATE TABLE IF NOT EXISTS `app_cards`.`inventories` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `card_id` INT NULL,
@@ -137,9 +137,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`teams`
+-- Table `app_cards`.`teams`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`teams` (
+CREATE TABLE IF NOT EXISTS `app_cards`.`teams` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
@@ -148,9 +148,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`team_cards`
+-- Table `app_cards`.`team_cards`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`team_cards` (
+CREATE TABLE IF NOT EXISTS `app_cards`.`team_cards` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `team_id` INT NOT NULL,
   `card_id` INT NOT NULL,
@@ -159,9 +159,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`affiliations`
+-- Table `app_cards`.`affiliations`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`affiliations` (
+CREATE TABLE IF NOT EXISTS `app_cards`.`affiliations` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `image_id` INT NULL,
